@@ -1,4 +1,4 @@
-package Steps;
+package com.steps;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,23 +8,21 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class Login_Step {
+public class Steps {
     private WebDriver driver;
  
 	@Given("I am in the Para Bank Login Page")
-	@Given("I am in the Para Bank Login Page two")
-
 	public void i_am_in_the_para_bank_login_page() {
 	    System.setProperty("webdriver.gecko.driver", "C:\\Users\\HP\\Downloads\\Selenium\\Browser drivers\\geckodriver.exe");
         driver = new FirefoxDriver();
         driver.get("https://parabank.parasoft.com/parabank/index.htm;jsessionid=36913DD8495585335F822ED68A1B9DB5");
 	}
 
-	@When("I enter valid credentials {string} and {string}")
-	public void i_enter_valid_credentials(String username, String password) {
-    driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/div/form/div[1]/input")).sendKeys(username);
-    driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/div/form/div[2]/input")).sendKeys(password);
-    driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/div/form/div[3]/input")).click();
+	@When("I enter valid credentials")
+	public void i_enter_valid_credentials() {
+    driver.findElement(By.name("username")).sendKeys("user");
+    driver.findElement(By.name("password")).sendKeys("password");
+    driver.findElement(By.name("password")).submit();
 	}
 
 	@Then("Should taken to the Overview Page")
